@@ -1,24 +1,37 @@
  
+ 
 <div class="flexSign">
-    <img src="assets/image/papa.svg" id="papa" width= "2200px" height = "600px"/>
-    <div class="container">
-        <p class = "h1">Welcome back!</p>
-      <form >
-          
-      <input type="text" placeholder="Enter your Email" id="email" required ><br>
+  <img src="assets/image/papa.svg" id="papa" width= "2200px" height = "600px"/>
+  <div class="container">
+      <p class = "h1">Welcome back!</p>
+      <form [formGroup]="logInForm" (ngSubmit)="onSubmit()">
+         <!-- Email -->
+         <input type="text" placeholder="Your Email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+             <label *ngIf="f.email.errors.required">Email is required</label>
+             <label *ngIf="f.email.errors.email">Email must be a valid email address</label>
+         </div>
+       <br>
+ <!-- Password -->
+ <!-- Password -->
+ <input type="password" placeholder="Password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+ <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+     <label *ngIf="f.password.errors.required">Password is required</label>
+     <label *ngIf="f.password.errors.minlength">Password must be at least 6 characters</label>
+ </div>
+
+ <br>
+
+
+    <input class="registerbtn"  type="submit" value="Sign in">
+    <br>
+
+   <p class="h2">Not yet in the team? <a routerLink = "/sign-up">Sign up</a></p>   
+   
+         </form> 
+        
+    </div>
   
-      
-      <input type="password" placeholder="Enter Password" id="psw" required><br>
-
-      <input class="registerbtn"  type="submit" value="Sign in">
-      <br>
-
-     <p class="h2">Not yet in the team? <a routerLink = "/sign-up">Sign up</a></p>   
-     
-           </form> 
-          
-      </div>
-    
 
 
 </div>
